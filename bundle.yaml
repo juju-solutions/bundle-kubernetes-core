@@ -8,7 +8,7 @@ services:
       "gui-x": "0"
       "gui-y": "0"
   etcd:
-    charm: "cs:~containers/trusty/etcd-1"
+    charm: "cs:~containers/trusty/etcd-2"
     num_units: 3
     annotations:
       "gui-x": "0"
