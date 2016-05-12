@@ -1,18 +1,18 @@
 series: trusty
 services:
   kubernetes:
-    charm: "cs:~containers/trusty/kubernetes-2"
+    charm: cs:~containers/trusty/kubernetes-2
     exposed: true
     num_units: 2
     annotations:
-      "gui-x": "0"
-      "gui-y": "0"
+      gui-x: '0'
+      gui-y: '0'
   etcd:
-    charm: "cs:~containers/trusty/etcd-1"
+    charm: cs:~containers/trusty/etcd-2
     num_units: 3
     annotations:
-      "gui-x": "0"
-      "gui-y": "300"
+      gui-x: '0'
+      gui-y: '300'
 relations:
-  - - "kubernetes:etcd"
-    - "etcd:db"
+- - kubernetes:etcd
+  - etcd:db
