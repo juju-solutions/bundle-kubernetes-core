@@ -47,7 +47,7 @@ class TestCharm(unittest.TestCase):
     def test_cluster_info(self):
         """Test that kubectl is installed and the cluster appears healthy."""
         for unit in self.k8s:
-            output, rc = unit.run('kubectl cluster-info')
+            output, rc = unit.run('kubectl --kubeconfig=/home/ubuntu/.kube/config cluster-info')  # noqa
             if rc != 0:
                 message = 'The kubectl command was unsuccessful: \n' + output
                 raise Exception(message)
@@ -61,8 +61,7 @@ class TestCharm(unittest.TestCase):
     def test_kube_containers(self):
         """Cycle through every unit in the service and ensure the kubernetes
         containers are running."""
-        containers = ['apiserver', 'controller-manager', 'kubelet', 'proxy',
-                      'scheduler']
+        containers = ['kubelet', 'proxy']
         for unit in self.k8s:
             output, rc = unit.run('docker ps')
             if rc != 0:
@@ -79,7 +78,7 @@ class TestCharm(unittest.TestCase):
         if rc != 0:
             message = 'The docker command was not successful: \n' + output
             raise Exception(message)
-        for container in ['etcd', 'kube2sky', 'skydns', 'healthz']:
+        for container in ['etcd', 'kube2sky', 'skydns', 'healthz', 'apiserver', 'controller-manager', 'scheduler']:  # noqa
             if container not in output:
                 print(output)
                 message = container + ' not found in docker processes.'
