@@ -1,14 +1,16 @@
-series: trusty
+series: xenial
 services:
   kubernetes:
-    charm: cs:~containers/trusty/kubernetes-5
+    charm: cs:xenial/kubernetes-6
+    options:
+      version: v1.3.4
     exposed: true
     num_units: 2
     annotations:
       gui-x: '0'
       gui-y: '0'
   etcd:
-    charm: cs:~containers/trusty/etcd-3
+    charm: cs:xenial/etcd-8
     num_units: 3
     annotations:
       gui-x: '300'
