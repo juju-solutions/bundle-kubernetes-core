@@ -72,13 +72,13 @@ class TestCharm(unittest.TestCase):
                     print(output)
                     message = container + ' not found in docker processes.'
                     raise Exception(message)
-        # Check if the leader is running the skydns service.
+        # Check if the leader is running the kubedns service.
         leader = get_leader(self.k8s)
         output, rc = leader.run('docker ps')
         if rc != 0:
             message = 'The docker command was not successful: \n' + output
             raise Exception(message)
-        for container in ['etcd', 'kube2sky', 'skydns', 'healthz', 'apiserver', 'controller-manager', 'scheduler']:  # noqa
+        for container in ['kubedns', 'healthz', 'apiserver', 'controller-manager', 'scheduler']:  # noqa
             if container not in output:
                 print(output)
                 message = container + ' not found in docker processes.'
