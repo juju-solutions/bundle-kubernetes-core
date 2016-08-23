@@ -1,7 +1,7 @@
 series: xenial
 services:
   kubernetes:
-    charm: cs:xenial/kubernetes-6
+    charm: cs:xenial/kubernetes-7
     options:
       version: v1.3.4
     exposed: true
