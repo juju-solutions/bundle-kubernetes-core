@@ -17,7 +17,7 @@ Kubernetes.
 
 ## Usage
 ```
-juju deploy cs:~containers/bundle/kubernetes-core
+juju deploy kubernetes-core
 ```
 
 The charms
@@ -27,28 +27,28 @@ need to grab the kubectl and configuration from the Kubernetes leader node to
 control the cluster:
 
 ```
-juju scp kubernetes/<leader-unit-number>:kubectl_package.tar .
-tar zxf kubectl_package.tar
-./kubectl get pods
+juju scp kubernetes/<leader-unit-number>:kubectl_package.tar.gz .
+tar zxf kubectl_package.tar.gz
+./kubectl --kubeconfig ./kubeconfig get pods
 ```
 
-You should not have the kubectl command and configuration for the cluster that
+You should now have the kubectl command and configuration for the cluster that
 was just created, you can now check the state of the cluster:
 
 ```
-./kubectl cluster-health
+./kubectl --kubeconfig ./kubeconfig cluster-health
 ```
 Now you can run pods inside the Kubernetes cluster:
 ```
-./kubectl create -f example.yaml
+./kubectl --kubeconfig ./kubeconfig create -f example.yaml
 ```
 List all pods in the cluster:
 ```
-./kubectl get pods
+./kubectl --kubeconfig ./kubeconfig get pods
 ```
 List all services in the cluster:
 ```
-./kubectl get svc
+./kubectl --kubeconfig ./kubeconfig get svc
 ```
 
 ## Scale out Usage
