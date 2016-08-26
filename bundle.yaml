@@ -4,7 +4,7 @@ services:
     charm: cs:xenial/kubernetes-7
     options:
       version: v1.3.4
-    exposed: true
+    expose: true
     num_units: 2
     annotations:
       gui-x: '0'
