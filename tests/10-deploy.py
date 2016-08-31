@@ -18,8 +18,8 @@ class TestCharm(unittest.TestCase):
         cls.bundle = os.getenv('BUNDLE', 'bundle.yaml')
         # Create a path to the bundle based on this file's location.
         cls.bundle_path = os.path.join(os.path.dirname(__file__),
-                                        '..',
-                                        cls.bundle)
+                                       '..',
+                                       cls.bundle)
         # Normalize the path to the bundle.
         cls.bundle_path = os.path.abspath(cls.bundle_path)
 
@@ -103,15 +103,15 @@ class TestCharm(unittest.TestCase):
             message = 'The docker command was not successful: \n' + output
             raise Exception(message)
         master_containers = ['apiserver', 'controller-manager', 'scheduler']
-        for container in master_containers: 
+        for container in master_containers:
             if container not in output:
                 print(output)
                 message = container + ' not found in docker processes.'
                 raise Exception(message)
 
     def test_kube_dns(self):
-        """Run the kubectl utility to find out other information about the
-        cluster."""
+        """Cycle through the units to see if the kubedns container is running
+        on one of them."""
         found_kubedns = False
         for unit in self.k8s:
             name = unit.info['unit_name']
@@ -143,12 +143,14 @@ class TestCharm(unittest.TestCase):
             message = 'The tar command was not successful: \n' + output
             raise Exception(message)
 
+
 def get_leader(units):
     """Return the leader unit for the array of units."""
     for unit in units:
         out = unit.run('is-leader')
         if out[0] == 'True':
             return unit
+
 
 def kubectl_cmd(command="", namespace="", json=False):
     """All the kubectl commands need the configuration appended."""
