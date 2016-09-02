@@ -1,30 +1,39 @@
 # Core Kubernetes Bundle
 
-This is a bundle that creates a basic Kubernetes cluster.
+This is a Juju bundle that creates a basic Kubernetes cluster. This bundle 
+deploys the minimum number of resources needed to get started using Google's 
+container orchestrator, Kubernetes.
 
 ## Overview
 
-Kubernetes is an open-source system for automating deployment, operations, and
-scaling of containerized applications.
+Kubernetes is an open-source platform for automating deployment, operations,
+and scaling of containerized applications across clusters of hosts.
 
 It groups containers that make up an application into logical units for easy
-management and discovery.
-
-
-Deploy a basic Kubernetes bundle - and only consume the resources needed to
-run your containerized workloads in Google's container orchestrator
-Kubernetes.
+management and discovery. You can scale up the individual pieces to create a 
+larger cluster.
 
 ## Usage
+
+To deploy a Kubernetes cluster it is one Juju command:
+
 ```
 juju deploy kubernetes-core
 ```
 
-The charms
-update the status messages with progress, so it is recommended to run
-`watch juju status` to monitor the cluster coming up. After it is deployed you
-need to grab the kubectl and configuration from the Kubernetes leader node to
-control the cluster:
+Juju deployed two units of the kubernetes charm, three units of etcd and 
+related them to form a Kubernetes cluster. One of the kubenetes units is the
+master and the other is a worker. To determine which unit is the master use the
+`juju status` command.
+
+### Using kubectl
+
+After the cluster is deployed download the `kubectl` command line tool and
+the configuration from the master unit. For your convenience, the master unit
+created a package with the certificate, key and configuration to securely
+communicate with this Kubernetes cluster. If the master unit changes, say you
+deploy a new cluster you will need to download the new package as the 
+information has changed.
 
 ```
 juju scp kubernetes/<leader-unit-number>:kubectl_package.tar.gz .
@@ -32,24 +41,37 @@ tar zxf kubectl_package.tar.gz
 ./kubectl --kubeconfig ./kubeconfig get pods
 ```
 
-You should now have the kubectl command and configuration for the cluster that
-was just created, you can now check the state of the cluster:
+You should now have the `kubectl` command and configuration for the cluster
+that was just created, you can now check the state of the cluster:
 
 ```
-./kubectl --kubeconfig ./kubeconfig cluster-health
+./kubectl --kubeconfig ./kubeconfig cluster-info
 ```
-Now you can run pods inside the Kubernetes cluster:
+
+Create pods and services on the Kubernetes cluster by using resource 
+definitions on your host system:
+
 ```
-./kubectl --kubeconfig ./kubeconfig create -f example.yaml
+./kubectl --kubeconfig ./kubeconfig create -f example.yml
+
 ```
+
 List all pods in the cluster:
+
 ```
 ./kubectl --kubeconfig ./kubeconfig get pods
 ```
+
 List all services in the cluster:
+
 ```
 ./kubectl --kubeconfig ./kubeconfig get svc
 ```
+
+You should be able to manage the Kubernetes cluster by using the `kubectl` 
+command line tool. Use the 
+[kubectl-cheatsheet](http://kubernetes.io/docs/user-guide/kubectl-cheatsheet/) 
+for more information about the `kubectl` command.
 
 ## Scale out Usage
 
@@ -57,7 +79,7 @@ Any of the services provided can be scaled out post-deployment. By default
 the pods are automatically be spread throughout the Kubernetes clusters you
 have deployed.
 
-### Scaling Kubernetes
+### Scaling Kubernetes Up
 
 To add more Kubernetes nodes to the cluster:
 
@@ -69,7 +91,7 @@ or specify machine constraints to create larger nodes:
 
 Refer to the
 [machine constraints documentation](https://jujucharms.com/docs/stable/charms-constraints)
-for other machine constraints that might be useful for the Kubernetes nodes.
+if you want more information about setting larger constraints.
 
 ### Scaling Etcd
 
