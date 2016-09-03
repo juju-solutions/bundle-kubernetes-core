@@ -3,7 +3,7 @@ services:
   kubernetes:
     charm: cs:xenial/kubernetes-8
     options:
-      version: v1.3.4
+      version: v1.3.6
     expose: true
     num_units: 2
     annotations:
