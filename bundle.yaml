@@ -9,7 +9,6 @@ machines:
   0:
   1:
   2:
-  3:
 services:
   "kubernetes-master":
     charm: "cs:~containers/kubernetes-master-4"
@@ -55,7 +54,7 @@ services:
     charm: "cs:~containers/etcd-14"
     num_units: 1
     to:
-      - 3
+      - 0
     annotations:
       "gui-x": "800"
       "gui-y": "550"
