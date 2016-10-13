@@ -373,11 +373,11 @@ for other machine constraints that might be useful for the kubernetes-worker uni
 
 ### Scaling Etcd
 
-Etcd is used as a key-value store for the Kubernetes cluster. For reliability
-the bundle defaults to three instances in this cluster.
+Etcd is used as a key-value store for the Kubernetes cluster. The bundle
+defaults to one instance in this cluster.
 
-For more scalability, we recommend between 3 and 9 etcd nodes. If you want to
-add more nodes:
+For reliability and more scalability, we recommend between 3 and 9 etcd nodes.
+If you want to add more nodes:
 
 ```
 juju add-unit etcd
