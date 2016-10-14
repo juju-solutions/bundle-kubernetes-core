@@ -1,4 +1,3 @@
-# Bundle level test. Only execute the 20 and 30 class series of tests
 tests: "*"
 # Adding tims PPA so we get current dependencies
 sources:
