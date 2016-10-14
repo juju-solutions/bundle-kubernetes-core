@@ -5,15 +5,12 @@
 # deployment before moving to production.
 #
 series: xenial
-machines:
-  0:
-  1:
 services:
   "kubernetes-master":
     charm: "cs:~containers/kubernetes-master-4"
     num_units: 1
     to:
-      - 0
+      - "0"
     annotations:
       "gui-x": "800"
       "gui-y": "850"
@@ -34,7 +31,7 @@ services:
     charm: "cs:~containers/kubernetes-worker-5"
     num_units: 1
     to:
-      - 1
+      - "1"
     expose: true
     annotations:
       "gui-x": "100"
@@ -44,7 +41,7 @@ services:
     charm: "cs:~containers/etcd-14"
     num_units: 1
     to:
-      - 0
+      - "0"
     annotations:
       "gui-x": "800"
       "gui-y": "550"
@@ -66,3 +63,8 @@ relations:
     - "flannel:host"
   - - "flannel:etcd"
     - "etcd:db"
+machines:
+  "0":
+    series: xenial
+  "1":
+    series: xenial
