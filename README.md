@@ -7,7 +7,7 @@
 This is a minimal Kubernetes cluster comprised of the following components and features:
 
 - Kubernetes (automated deployment, operations, and scaling)
-     - Two node Kubernetes cluster with one master node and one worker node.
+     - Three node Kubernetes cluster with one master node and two worker nodes.
      - TLS used for communication between nodes for security.
      - Flannel Software Defined Network (SDN) plugin
      - Optional Ingress Controller and Dashboard (on worker/master respectively)

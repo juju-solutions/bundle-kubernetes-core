@@ -8,6 +8,7 @@ series: xenial
 machines:
   0:
   1:
+  2:
 services:
   "kubernetes-master":
     charm: "cs:~containers/kubernetes-master-4"
@@ -32,9 +33,10 @@ services:
       "gui-y": "550"
   "kubernetes-worker":
     charm: "cs:~containers/kubernetes-worker-5"
-    num_units: 1
+    num_units: 2
     to:
       - 1
+      - 2
     expose: true
     annotations:
       "gui-x": "100"
