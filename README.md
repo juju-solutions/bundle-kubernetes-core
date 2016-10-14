@@ -7,10 +7,9 @@
 This is a minimal Kubernetes cluster comprised of the following components and features:
 
 - Kubernetes (automated deployment, operations, and scaling)
-     - Two node Kubernetes cluster with one master node and one worker node.
+     - Three node Kubernetes cluster with one master node and two worker nodes.
      - TLS used for communication between nodes for security.
      - Flannel Software Defined Network (SDN) plugin
-     - A load balancer for HA kubernetes-master (Experimental)
      - Optional Ingress Controller and Dashboard (on worker/master respectively)
 - EasyRSA
      - Performs the role of a certificate authority serving self signed certificates
@@ -64,13 +63,12 @@ juju deploy kubernetes-core
 proxy configuration options as described in the Proxy configuration section
 above.
 
-This bundle exposes the kubeapi-load-balancer and kubernetes-worker charms by
-default. This means those charms are accessible through their public addresses.
+This bundle exposes the kubernetes-worker charm by default. This means that
+it is accessible through its public address.
 
-If you would like to remove external access, unexpose the applications:
+If you would like to remove external access, unexpose the application:
 
 ```
-juju unexpose kubeapi-load-balancer
 juju unexpose kubernetes-worker
 ```
 
