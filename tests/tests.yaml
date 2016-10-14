@@ -1,4 +1,9 @@
+tests: "*"
+# Adding tims PPA so we get current dependencies
+sources:
+  - ppa:tvansteenburgh/ppa
 packages:
   - amulet
-tests: 10-deploy.py
+  - juju-deployer
+  - python-jujuclient
 reset: false
