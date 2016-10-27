@@ -7,8 +7,7 @@
 series: xenial
 services:
   "kubernetes-master":
-    #charm: "cs:~containers/kubernetes-master-5"
-    charm: "cs:~cynerva/xenial/kubernetes-master-9"
+    charm: "cs:~containers/kubernetes-master-5"
     num_units: 1
     to:
       - "0"
@@ -29,15 +28,11 @@ services:
       "gui-x": "450"
       "gui-y": "550"
   "kubernetes-worker":
-    #charm: "cs:~containers/kubernetes-worker-6"
-    charm: "cs:~cynerva/xenial/kubernetes-worker-2"
+    charm: "cs:~containers/kubernetes-worker-6"
     num_units: 1
     to:
       - "1"
     expose: true
-    options:
-      http_proxy: http://squid.internal:3128
-      https_proxy: https://squid.internal:3128
     annotations:
       "gui-x": "100"
       "gui-y": "850"
