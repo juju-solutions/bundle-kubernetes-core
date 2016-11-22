@@ -398,8 +398,6 @@ to determine fault tolerance.
 
  The following are known issues and limitations with the bundle and charm code:
 
- - kubernetes-master, kubernetes-worker, kubeapi-load-balancer and etcd are not
- supported on LXD at this time.
  - Destroying the the easyrsa charm will result in loss of public key
  infrastructure (PKI).
 
