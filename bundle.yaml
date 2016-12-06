@@ -39,7 +39,7 @@ services:
       "gui-y": "850"
 #    constraints: cpu-cores=4 mem=15G root-disk=30G
   etcd:
-    charm: "cs:~containers/etcd-19"
+    charm: "cs:~containers/etcd-20"
     num_units: 1
     to:
       - "0"
