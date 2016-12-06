@@ -39,7 +39,7 @@ services:
       "gui-y": "850"
 #    constraints: cpu-cores=4 mem=15G root-disk=30G
   etcd:
-    charm: "cs:~containers/etcd-17"
+    charm: "cs:~containers/etcd-19"
     num_units: 1
     to:
       - "0"
@@ -56,6 +56,8 @@ relations:
     - "easyrsa:client"
   - - "kubernetes-master:etcd"
     - "etcd:db"
+  - - "etcd:certificates"
+    - "easyrsa:client"
   - - "kubernetes-master:sdn-plugin"
     - "flannel:host"
   - - "kubernetes-worker:certificates"
