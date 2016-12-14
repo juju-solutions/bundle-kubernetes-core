@@ -7,7 +7,7 @@
 series: xenial
 services:
   "kubernetes-master":
-    charm: "cs:~containers/kubernetes-master-8"
+    charm: "cs:~containers/kubernetes-master-9"
     num_units: 1
     to:
       - "0"
@@ -15,13 +15,13 @@ services:
     annotations:
       "gui-x": "800"
       "gui-y": "850"
-  flannel:
-    charm: "cs:~containers/flannel-6"
+  "flannel":
+    charm: "cs:~containers/flannel-7"
     annotations:
       "gui-x": "450"
       "gui-y": "750"
-  easyrsa:
-    charm: "cs:~containers/easyrsa-3"
+  "easyrsa":
+    charm: "cs:~containers/easyrsa-5"
     num_units: 1
     to:
       - lxd:0
@@ -29,7 +29,7 @@ services:
       "gui-x": "450"
       "gui-y": "550"
   "kubernetes-worker":
-    charm: "cs:~containers/kubernetes-worker-11"
+    charm: "cs:~containers/kubernetes-worker-12"
     num_units: 1
     to:
       - "1"
@@ -38,8 +38,8 @@ services:
       "gui-x": "100"
       "gui-y": "850"
 #    constraints: cpu-cores=4 mem=15G root-disk=30G
-  etcd:
-    charm: "cs:~containers/etcd-17"
+  "etcd":
+    charm: "cs:~containers/etcd-21"
     num_units: 1
     to:
       - "0"
@@ -56,14 +56,16 @@ relations:
     - "easyrsa:client"
   - - "kubernetes-master:etcd"
     - "etcd:db"
-  - - "kubernetes-master:sdn-plugin"
-    - "flannel:host"
   - - "kubernetes-worker:certificates"
     - "easyrsa:client"
-  - - "kubernetes-worker:sdn-plugin"
-    - "flannel:host"
   - - "flannel:etcd"
     - "etcd:db"
+  - - "flannel:cni"
+    - "kubernetes-master:cni"
+  - - "flannel:cni"
+    - "kubernetes-worker:cni"
+  - - "etcd:certificates"
+    - "easyrsa:client"
 machines:
   "0":
     series: xenial
