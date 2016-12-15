@@ -400,6 +400,10 @@ to determine fault tolerance.
 
  - Destroying the the easyrsa charm will result in loss of public key
  infrastructure (PKI).
+ - The lxd:0 unit to which the easyrsa charm is deployed may not be directly net 
+ accessible, depending on the juju provider used, but it will not effect the use of
+ the charm. The charm communicates its data via relations to units on the 0 unit which
+ is network accessible.
 
 ## Kubernetes details
 
