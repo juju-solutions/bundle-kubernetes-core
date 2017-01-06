@@ -103,6 +103,7 @@ juju attach kubernetes-master kubernetes=~/path/to/kubernetes-master.tar.gz
 After installing conjure-up, you can deploy the kubernetes-core bundle and tweak config values with one command:
 
 ```
+sudo apt-add-repository ppa:conjure-up/next
 sudo apt install conjure-up
 conjure-up kubernetes-core
 ```
