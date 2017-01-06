@@ -104,6 +104,7 @@ After installing conjure-up, you can deploy the kubernetes-core bundle and tweak
 
 ```
 sudo apt-add-repository ppa:conjure-up/next
+sudo apt update
 sudo apt install conjure-up
 conjure-up kubernetes-core
 ```
